@@ -3,13 +3,13 @@ import math
 import numpy as np
 import scipy.special as sc
 
-from tests.src.utils import split_list
+from tests.src.utils import split_list, __print
 from tests.src.rakn import rank
 
 # .5 Binary Matrix Rank Test
-def binary_matrix_rank_test(key, n, M=32, Q=32):
+def binary_matrix_rank_test(key, n, M=32, Q=32, b_print=True):
     if n < 38912:
-        print('{:40} : Error. Need at least 38,912 bits. Got {}.' .format('binary matrix rank test', n))
+        __print(b_print, '{:40} : Error. Need at least 38,912 bits. Got {}.' .format('binary matrix rank test', n))
         return [0], False
 
     N=n//(M*Q)
@@ -33,6 +33,6 @@ def binary_matrix_rank_test(key, n, M=32, Q=32):
 
     b = (p >= 0.01)
 
-    print('{:40} : {:.3f} -> {}'.format('binary matrix rank test',p,b))
+    __print(b_print, '{:40} : {:.3f} -> {}'.format('binary matrix rank test',p,b))
 
     return [p],b

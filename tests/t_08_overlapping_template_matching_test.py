@@ -2,21 +2,21 @@ import math
 
 import scipy.special as sc
 
-from tests.src.utils import split_list
+from tests.src.utils import split_list, __print
 
 # Check for a match with a template that consists of all ones.
 
 # .8 Overlapping Template Matching Test
-def overlapping_template_matching_test(key, n, m=9, M=1032):
+def overlapping_template_matching_test(key, n, m=9, M=1032, b_print=True):
     if n <1000000:
-        print ('{:40} : Error. Need at  1,000,000 bits. Got {}.'.format('overlapping template matching test',n))
+        __print (b_print, '{:40} : Error. Need at  1,000,000 bits. Got {}.'.format('overlapping template matching test',n))
         return [0], False
 
     N=n//M
     K=5
 
     if not(n>=M*N):
-        print ('{:40} : Error. "n>=M*N" This conditional expression is not satisfied.'.format('overlapping template matching test'))
+        __print (b_print, '{:40} : Error. "n>=M*N" This conditional expression is not satisfied.'.format('overlapping template matching test'))
         return [0], False
 
     # lam=(int(M-m+1)/(2**m)==2)
@@ -50,7 +50,7 @@ def overlapping_template_matching_test(key, n, m=9, M=1032):
     v=[0 for x in range(K+1)]
 
     for i in range(K+1):
-        if i < K: 
+        if i < K:
             v[i]=w.count(i)
         else :
             v[i]=len([x for x in w if x  >= K ])
@@ -68,7 +68,7 @@ def overlapping_template_matching_test(key, n, m=9, M=1032):
     pi[5] = 1- sum(pi[0:5])
 
     if not (N*min(pi)>5):
-        print ('{:40} : Error. "N*min(pi)>5" This conditional expression is not satisfied.'.format('overlapping template matching test'))
+        __print (b_print, '{:40} : Error. "N*min(pi)>5" This conditional expression is not satisfied.'.format('overlapping template matching test'))
         return [0], False
 
     v=list(map(float,v))
@@ -79,6 +79,6 @@ def overlapping_template_matching_test(key, n, m=9, M=1032):
 
     b = (p >= 0.01)
 
-    print('{:40} : {:.3f} -> {} '.format('overlapping template matching test',p,b))
+    __print(b_print, '{:40} : {:.3f} -> {} '.format('overlapping template matching test',p,b))
 
     return [p] , b

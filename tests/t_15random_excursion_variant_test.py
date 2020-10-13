@@ -2,10 +2,10 @@ import math
 
 import scipy.special as sc
 
-from tests.src.utils import split_list
+from tests.src.utils import split_list, __print
 
 # .15 Random Excursions Variant Test
-def random_excursion_variant_test(key, n):
+def random_excursion_variant_test(key, n, b_print=True):
     S=[0]*n
 
     for i in range(n):
@@ -34,7 +34,7 @@ def random_excursion_variant_test(key, n):
         ps.append(p)
         bs.append(b)
 
-        if   i == 0 : print('{:40} : {:.3f} -> {} '.format('random excursions test (x = {:2})'.format(state[i]),p,b))
-        else          : print('{:40} : {:.3f} -> {} '.format('                       (x = {:2})'.format(state[i]),p,b))
+        if   i == 0 : __print(b_print, '{:40} : {:.3f} -> {} '.format('random excursions test (x = {:2})'.format(state[i]),p,b))
+        else        : __print(b_print, '{:40} : {:.3f} -> {} '.format('                       (x = {:2})'.format(state[i]),p,b))
 
     return ps, all(bs)

@@ -1,7 +1,9 @@
 import math
 
+from tests.src.utils import __print
+
 # .3 Runs Test
-def run_test(key, ones, zeros, n, tau):
+def run_test(key, ones, zeros, n, tau, b_print=True):
     pi = ones/n
 
     vobs=1
@@ -15,5 +17,5 @@ def run_test(key, ones, zeros, n, tau):
 
     b = (p >= 0.01)
 
-    print('{:40} : {:.3f} -> {}'.format('run test',p,b))
+    __print(b_print, '{:40} : {:.3f} -> {}'.format('run test',p,b))
     return [p], b

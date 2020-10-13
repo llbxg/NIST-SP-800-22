@@ -2,19 +2,19 @@ import math
 
 import scipy.special as sc
 
-from tests.src.utils import split_list
+from tests.src.utils import split_list, __print
 
 # .9 Maurer’s “Universal Statistical” Test
-def maurers_universal_statical_test(key, n):
+def maurers_universal_statical_test(key, n, b_print=True):
     if n <387840:
-        print ('{:40} : Error. Need at  387,840 bits. Got {}.'.format('maurers universal statical test',n))
+        __print (b_print, '{:40} : Error. Need at  387,840 bits. Got {}.'.format('maurers universal statical test',n))
         return [0], False
 
     L=6
     nlist = [904960, 2068480, 4654080, 10342400, 22753280, 49643520, 107560960, 231669760, 496435200, 1059061760]
     num= len(list(filter(lambda x:n > x, nlist)))
     L+=num
-        
+
     Q=10*2**L
 
     key = ''.join(list(map(str, key)))
@@ -58,6 +58,6 @@ def maurers_universal_statical_test(key, n):
 
     b = (p >= 0.01)
 
-    print('{:40} : {:.3f} -> {} '.format('maurers universal statical test',p,b))
+    __print(b_print, '{:40} : {:.3f} -> {} '.format('maurers universal statical test',p,b))
 
     return [p], b

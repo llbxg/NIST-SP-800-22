@@ -1,6 +1,6 @@
 import scipy.special as sc
 
-from tests.src.utils import split_list
+from tests.src.utils import split_list, __print
 
 # How to select N is the biggest problem.
 # In the Nist program, |n / M| is adopted.
@@ -8,7 +8,7 @@ from tests.src.utils import split_list
 # This program adopted |n / M|.
 
 # .4 Test for the Longest Run of Ones in a Block
-def test_for_the_longest_run_of_ones_in_a_block(key, n):
+def test_for_the_longest_run_of_ones_in_a_block(key, n, b_print=True):
     v=[0, 0, 0, 0, 0, 0, 0]
 
     def search_longest(Mbit):
@@ -33,7 +33,7 @@ def test_for_the_longest_run_of_ones_in_a_block(key, n):
                 else :
                     now_longest = 0
             ll.append(longest)
-        
+
         return ll
 
     def table_pi(M):
@@ -99,11 +99,11 @@ def test_for_the_longest_run_of_ones_in_a_block(key, n):
         p=sc.gammaincc(K/2,chi_squared_obs/2)
 
     else :
-        print ('{:40} : Error. Need at least 128 bits. Got {}.'.format('the longest run of ones in a block', n))
+        __print (b_print, '{:40} : Error. Need at least 128 bits. Got {}.'.format('the longest run of ones in a block', n))
         return [0], False
 
     b = (p >= 0.01)
 
-    print('{:40} : {:.3f} -> {}'.format('the longest run of ones in a block',p,b))
+    __print(b_print, '{:40} : {:.3f} -> {}'.format('the longest run of ones in a block',p,b))
 
     return [p], b

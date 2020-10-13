@@ -1,12 +1,12 @@
 import scipy.special as sc
 
-from tests.src.utils import split_list
+from tests.src.utils import split_list, __print
 from tests.src.bma import bma
 
 # .10 Linear Complexity Test
-def liner_complexity_test(key, n, M=500):
+def liner_complexity_test(key, n, M=500, b_print=True):
     if n <1000000:
-        print ('{:40} : Error. Need at  1,000,000 bits. Got {}.'.format('liner complexity test',n))
+        __print (b_print, '{:40} : Error. Need at  1,000,000 bits. Got {}.'.format('liner complexity test',n))
         return [0], False
 
     N=n//M
@@ -44,6 +44,6 @@ def liner_complexity_test(key, n, M=500):
 
     b = (p >= 0.01)
 
-    print('{:40} : {:.3f} -> {} '.format('liner complexity test',p,b))
+    __print(b_print, '{:40} : {:.3f} -> {} '.format('liner complexity test',p,b))
 
     return [p], b

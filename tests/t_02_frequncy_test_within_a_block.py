@@ -1,9 +1,9 @@
 import scipy.special as sc
 
-from tests.src.utils import split_list
+from tests.src.utils import split_list, __print
 
 # .2 Frequency Test within a Block
-def frequency_test_with_block(key, n, M=20000):
+def frequency_test_with_block(key, n, M=20000, b_print=True):
     N=n//M
     split_key=list(split_list(key,M))
 
@@ -17,12 +17,12 @@ def frequency_test_with_block(key, n, M=20000):
 
     b = (p >= 0.01)
 
-    print('{:25}( M = {:<5} )   : {:.3f} -> {}'.format('frequency test with block',M,p,b), end=' ')
+    __print(b_print, '{:25}( M = {:<5} )   : {:.3f} -> {}'.format('frequency test with block',M,p,b), end=' ')
 
     if M >= 20 and M > 0.01*n and N < 100:
-        print('( M is selected correctly. )')
+        __print(b_print, '( M is selected correctly. )')
 
     else:
-        print('( M is NOT selected correctly. )')
+        __print(b_print, '( M is NOT selected correctly. )')
 
     return [p], b

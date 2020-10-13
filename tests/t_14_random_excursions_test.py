@@ -1,7 +1,9 @@
 import scipy.special as sc
 
+from tests.src.utils import __print
+
 # .14 Random Excursions Test
-def random_excursions_test(key, n):
+def random_excursions_test(key, n, b_print=True):
     S=[0]*n
 
     for i in range(n):
@@ -18,11 +20,11 @@ def random_excursions_test(key, n):
         l=[]
         while (ind_total-1) <n:
             if x in txt:
-                
+
                 ind = txt.index(x)
                 ind_total=ind_total+len(txt[:(ind+1)])
                 l.append(ind_total-1)
-                txt=txt[(ind+1):] 
+                txt=txt[(ind+1):]
 
             else:
                 return l
@@ -87,8 +89,8 @@ def random_excursions_test(key, n):
 
         st = [-4,-3,-2,-1,1,2,3,4]
 
-        if   cnt == 0 : print('{:40} : {:.3f} -> {} '.format('random excursions test (x = {:2})'.format(st[cnt]),p,b))
-        else          : print('{:40} : {:.3f} -> {} '.format('                       (x = {:2})'.format(st[cnt]),p,b))
+        if   cnt == 0 : __print(b_print, '{:40} : {:.3f} -> {} '.format('random excursions test (x = {:2})'.format(st[cnt]),p,b))
+        else          : __print(b_print, '{:40} : {:.3f} -> {} '.format('                       (x = {:2})'.format(st[cnt]),p,b))
         cnt+=1
 
     return ps, all(bs)

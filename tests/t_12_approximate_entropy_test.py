@@ -2,12 +2,12 @@ import math
 
 import scipy.special as sc
 
-from tests.src.utils import split_list
+from tests.src.utils import split_list, __print
 
 # .12 Approximate Entropy Test
-def approximate_entropy_test(key, n, m=5):
+def approximate_entropy_test(key, n, m=5, b_print=True):
     if 2**m > n:
-        print ('{:40} : Error. m is too big .'.format('approximate entropy test'))
+        __print (b_print, '{:40} : Error. m is too big .'.format('approximate entropy test'))
         return [0], False
 
     def compute(s,m):
@@ -61,10 +61,10 @@ def approximate_entropy_test(key, n, m=5):
 
     b = (p >= 0.01)
 
-    print('{:40} : {:.3f} -> {} '.format('approximate entropy test',p,b),end = ' ')
+    __print(b_print, '{:40} : {:.3f} -> {} '.format('approximate entropy test',p,b),end = ' ')
     if m >= math.log2(n)-7:
-        print('(m : possess lower reliability)')
+        __print(b_print, '(m : possess lower reliability)')
     else:
-        print('')
+        __print(b_print, '')
 
     return [p], b

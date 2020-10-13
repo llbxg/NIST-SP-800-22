@@ -1,9 +1,9 @@
 import scipy.special as sc
 
-from tests.src.utils import split_list
+from tests.src.utils import split_list, __print
 
 # .11 Serial Test
-def serial_test(key, n, m=3):
+def serial_test(key, n, m=3, b_print=True):
     def compute(s,m):
         if m == 0:
             return 0
@@ -43,7 +43,7 @@ def serial_test(key, n, m=3):
     b1 = (p1 >= 0.01)
     b2 = (p2 >= 0.01)
 
-    print('{:40} : {:.3f} -> {} '.format('serial test',p1,b1))
-    print('{:40} : {:.3f} -> {} '.format('',p2,b2))
+    __print(b_print, '{:40} : {:.3f} -> {} '.format('serial test',p1,b1))
+    __print(b_print, '{:40} : {:.3f} -> {} '.format('',p2,b2))
 
     return [p1, p2], all([b1,  b2])

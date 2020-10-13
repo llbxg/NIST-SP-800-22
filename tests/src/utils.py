@@ -29,6 +29,8 @@ def split_list(l, n):
     for idx in range(0, len(l), n):
         yield l[idx:idx + n]
 
-def __print(b, txt):
+def __print(b, txt, end=None):
     if b:
-        print(txt)
+        if end:
+            print(txt)
+        print(txt, end=end)
